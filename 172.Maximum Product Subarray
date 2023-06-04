@@ -1,0 +1,23 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def maximumProduct(arr, n):
+    #Kadane's algorithm
+    ans=arr[0]
+    curr=1
+    for i in range(n-1):
+        curr*=arr[i]
+        ans=max(ans,curr)
+        if curr==0:
+            curr=1
+    curr=1
+    for i in range(n-1,-1,-1):
+        curr*=arr[i]
+        ans=max(ans,curr)
+        if curr==0:
+            curr=1
+    return ans
+
+    pass
