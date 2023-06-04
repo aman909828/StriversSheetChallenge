@@ -1,0 +1,18 @@
+def maxProfit(values, weights, n, w):
+    dp=[[-1 for i in range(w+1)]for j in range(n+1)]
+    def solve(ind,rem):
+        if ind<0 or rem<=0:
+            return 0
+        if dp[ind][rem]!=-1:
+            return dp[ind][rem]
+        take=0
+        if rem>=weights[ind]:
+            take=values[ind]+solve(ind-1,rem-weights[ind])
+        not_take=solve(ind-1,rem)
+        dp[ind][rem]=max(take,not_take)
+        return dp[ind][rem]
+    
+    return solve(n-1,w)
+
+    # Write your code here
+    pass
