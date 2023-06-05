@@ -1,0 +1,41 @@
+def merge(arr,temp,left,mid,right):
+    inverse_cnt=0
+    i=left
+    j=mid
+    k=left
+    while i<=mid-1 and j<=right:
+        if arr[i]<=arr[j]:
+            temp[k]=arr[i]
+            k+=1
+            i+=1
+        else:
+            temp[k]=arr[j]
+            k+=1
+            j+=1
+            inverse_cnt+=mid-i
+    while i<=mid-1:
+        temp[k]=arr[i]
+        k+=1
+        i+=1
+    while j<=right:
+        temp[k]=arr[j]
+        k+=1
+        j+=1
+    for i in range(left,right+1):
+        arr[i]=temp[i]
+    return inverse_cnt
+
+def merge_sort(arr,temp,left,right):
+    inverse_cnt=0
+    if right>left:
+        mid=(left+right)//2
+        inverse_cnt+=merge_sort(arr,temp,left,mid)
+        inverse_cnt+=merge_sort(arr,temp,mid+1,right)
+        inverse_cnt+=merge(arr,temp,left,mid+1,right)
+    return inverse_cnt
+
+def getInversions(arr, n) :
+
+    temp=[0]*n
+    ans=merge_sort(arr,temp,0,n-1)
+    return ans
