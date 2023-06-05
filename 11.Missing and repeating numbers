@@ -1,0 +1,12 @@
+def missingAndRepeating(arr, n):
+    s=set()
+    R=M=0
+    for i in arr:
+        if i in s:
+            R=i
+        s.add(i)
+    for i in range(1,n+1):
+        if i not in s:
+            M=i
+            break
+    return [M,R]
