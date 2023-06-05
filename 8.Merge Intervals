@@ -1,0 +1,20 @@
+def mergeIntervals(intervals):
+    n=len(intervals)
+    arr=[]
+    
+    for i in range(n):
+        x=[intervals[i].start,intervals[i].end]
+        arr.append(x)
+    arr.sort()
+    ans=[arr[0]]
+    for i in arr:
+        a=ans[-1]
+        if i[0]<=a[1]:
+            ans[-1]=[min(a[0],i[0]),max(a[1],i[1])]
+        else:
+            ans.append(i)
+    res=[]
+    for i in range(len(ans)):
+        x=Solution(ans[i][0],ans[i][1])
+        res.append(x)
+    return res
