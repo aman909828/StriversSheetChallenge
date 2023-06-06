@@ -1,0 +1,40 @@
+
+def merge(arr,low,mid,high):
+    total=0
+    j=mid+1
+    for i in range(low,mid+1):
+        while j<=high and arr[i]>2*arr[j]:
+            j+=1
+        total+=(j-(mid+1))
+
+    t=[]
+    left,right=low,mid+1
+    while left<=mid and right<=high:
+        if arr[left]<=arr[right]:
+            t.append(arr[left])
+            left+=1
+        else:
+            t.append(arr[right])
+            right+=1
+    while left<=mid:
+        t.append(arr[left])
+        left+=1
+    while right<=high:
+        t.append(arr[right])
+        right+=1
+    
+    for i in range(low,high+1):
+        arr[i]=t[i-low]
+    return total
+
+def merge_sort(arr,low,high):
+    inverse=0
+    if low<high:
+        mid=(low+high)//2
+        inverse+=merge_sort(arr,low,mid)
+        inverse+=merge_sort(arr,mid+1,high)
+        inverse+=merge(arr,low,mid,high)
+    return inverse
+
+def reversePairs(arr, n):
+    return merge_sort(arr,0,n-1)
