@@ -1,0 +1,16 @@
+def uniquePaths(m, n):
+	dp=[[-1 for i in range(m)]for j in range(n)]
+	def solve(i,j):
+		if i==n-1 and j==m-1:
+			return 1
+		elif i>=n or j>=m:
+			return 0
+		if dp[i][j]!=-1:
+			return dp[i][j]
+
+		right=solve(i,j+1)
+		down=solve(i+1,j)
+		dp[i][j]=right+down
+		return dp[i][j]
+
+	return solve(0,0)
