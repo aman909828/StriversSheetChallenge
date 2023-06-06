@@ -1,0 +1,11 @@
+def modularExponentiation(x, n, m):
+	ans = 1
+	while n:
+		if n%2:
+			ans=((ans%m)*(x%m))%m
+			n=n-1
+			
+		x=((x%m)*(x%m))%m
+		n=n>>1
+	return ans%m
+    
