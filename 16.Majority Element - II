@@ -1,0 +1,14 @@
+def majorityElementII(arr):
+	n=len(arr)
+	x=(n//3)+1
+	dict={}
+	for i in arr:
+		if i not in dict:
+			dict[i]=1
+		else:
+			dict[i]+=1
+	ans=[]
+	for i in dict:
+		if dict[i]>=x:
+			ans.append(i)
+	return ans
