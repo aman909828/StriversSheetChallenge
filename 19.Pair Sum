@@ -1,0 +1,28 @@
+def pairSum(arr, s):
+    dict={}
+    for i in arr:
+        if i in dict:
+            dict[i]+=1
+        else:
+            dict[i]=1
+
+    ans=[]
+    for i in dict:
+        y=dict[i]  
+        if s-i in dict:
+            if i>s-i:
+                continue
+            elif i==s-i:
+                p=(y*(y-1))//2
+                while p>0:
+                    ans.append((i,i))
+                    p-=1
+                continue
+            while y>0:
+                x=dict[s-i]
+                while x>0:
+                    ans.append((i,s-i))
+                    x-=1
+                y-=1
+    ans.sort()
+    return ans
