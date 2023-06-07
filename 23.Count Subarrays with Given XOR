@@ -1,0 +1,14 @@
+from collections import defaultdict
+def subarraysXor(arr, x):
+    n=len(arr)
+    ans=0
+    xr=0
+    dict=defaultdict(int)
+    dict[xr]=1
+
+    for i in range(n):
+        xr^=arr[i]
+        p=xr^x
+        ans+=dict[p]
+        dict[xr]+=1
+    return ans
