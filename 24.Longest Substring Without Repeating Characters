@@ -1,0 +1,21 @@
+def uniqueSubstrings(input ) :
+    n=len(input)
+    dict={}
+    ans=1
+    start=0
+    end=0
+    while end<n:
+        if input[end] not in dict:
+            dict[input[end]]=1
+            end+=1
+        else:
+            ans=max(ans,end-start)
+            dict[input[end]]+=1
+            while dict[input[end]]!=1:
+                dict[input[start]]-=1
+                if dict[input[start]]==0:
+                    del dict[input[start]]
+                start+=1
+            end+=1
+    ans=max(ans,end-start)
+    return ans
