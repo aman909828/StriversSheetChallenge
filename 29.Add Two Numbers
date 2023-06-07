@@ -1,0 +1,17 @@
+def addTwoNumbers(head1: Node, head2: Node) -> Node:
+    carry=0
+    l=Node()
+    dummy=l
+    while (head1 or head2 or carry):
+        value1 = head1.data if head1 else 0
+        value2 = head2.data if head2 else 0
+            
+        sum=value1+value2+carry
+        l.next=Node(sum%10)
+        carry=sum//10
+            
+        l=l.next
+        head1=head1.next if head1 else None
+        head2=head2.next if head2 else None 
+
+    return dummy.next
