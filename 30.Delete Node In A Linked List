@@ -1,0 +1,7 @@
+def deleteNode(node):
+    if not node:
+        return node
+    else:
+        node.data=node.next.data
+        node.next=node.next.next
+
