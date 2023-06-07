@@ -1,0 +1,14 @@
+def reverseLinkedList(head):
+    temp=head
+    prev=head
+    if head and head.next:
+        curr=head.next
+        temp.next=None
+    else:
+        return temp
+    while curr:
+        temp=prev
+        prev=curr
+        curr=curr.next
+        prev.next=temp
+    return prev
