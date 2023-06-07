@@ -1,0 +1,14 @@
+def LongestSubsetWithZeroSum(arr):
+    n=len(arr)
+    ans=0
+    for start in range(n):
+        sums=arr[start]
+        if sums==0:
+            ans=max(ans,1)
+        end=start+1
+        while end<n:
+            sums+=arr[end]
+            if sums==0:
+                ans=max(end-start+1,ans)
+            end+=1
+    return ans
