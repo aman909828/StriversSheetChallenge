@@ -1,0 +1,16 @@
+def sortTwoLists(first, second):
+    if not first:
+        return second
+    if not second:
+        return first
+    if first.data>second.data:
+        first,second=second,first
+    res=first
+    while first and second:
+        temp=None
+        while first and first.data<=second.data:
+            temp=first
+            first=first.next
+        temp.next=second
+        first,second=second,first
+    return res
