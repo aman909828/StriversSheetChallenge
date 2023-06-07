@@ -1,0 +1,12 @@
+def findIntersection(firstHead, secondHead):
+    s=set()
+    curr=firstHead
+    while curr:
+        s.add(curr)
+        curr=curr.next
+    curr=secondHead
+    while curr:
+        if curr in s:
+            return curr
+        curr=curr.next
+    return None
