@@ -1,0 +1,13 @@
+            
+def isPalindrome(head):
+    arr=[]
+    curr=head
+    while curr:
+        arr.append(curr.data)
+        curr=curr.next
+    arr1=arr[::-1]
+    n=len(arr)
+    for i in range(n):
+        if arr[i]!=arr1[i]:
+            return False
+    return True
