@@ -1,0 +1,20 @@
+def flattenLinkedList(root: Node) -> Node:
+    a=[]
+    l=Node(0)
+    l.next=root
+    while l:
+        a.append(l.data)
+        if l.child:
+            p=l.child
+            while p:
+                a.append(p.data)
+                p=p.child
+        l=l.next
+        
+    a.sort()
+    l=root
+    for i in a:
+        s=Node(i)
+        l.child=s
+        l=l.child
+    return root.child.child
