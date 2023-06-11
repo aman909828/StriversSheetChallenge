@@ -1,0 +1,13 @@
+def maximumActivities(start, finish):
+    n=len(start)
+    arr=[]
+    for i in range(n):
+        arr.append([finish[i],start[i]])
+    arr.sort()
+    st=-1
+    ans=0
+    for i in arr:
+        if i[1]>st-1:
+            ans+=1
+            st=i[0]
+    return ans
