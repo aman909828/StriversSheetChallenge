@@ -1,0 +1,13 @@
+def maximumMeetings(start, end):
+    n=len(end)
+    arr=[]
+    for i in range(n):
+        arr.append([start[i],end[i],i])
+    arr.sort(key=lambda x:x[1])
+    ends=-1
+    ans=[]
+    for i in range(n):
+        if arr[i][0]>ends:
+            ends=arr[i][1]
+            ans.append(arr[i][2]+1)
+    return ans
