@@ -1,0 +1,14 @@
+def NthRoot(n: int, m: int) -> int:
+    low=1
+    high=m
+    while low<=high:
+        mid=(low+high)//2
+        x=pow(mid,n)
+        if x==m:
+            return mid
+        elif x>m:
+            high=mid-1
+        else:
+            low=mid+1
+    return -1
+    
