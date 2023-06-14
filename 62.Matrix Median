@@ -1,0 +1,10 @@
+def getMedian(matrix):
+    n,m=len(matrix),len(matrix[0])
+    arr=[]
+    for i in range(n):
+        for j in range(m):
+            arr.append(matrix[i][j])
+    n=n*m
+    arr.sort()
+    x=n//2
+    return arr[x]
