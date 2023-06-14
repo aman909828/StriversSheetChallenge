@@ -1,0 +1,15 @@
+
+def subsetSum(num: List[int]) -> List[int]:
+    n = len(num)
+    res = []
+    for i in range(0, 1<<n):
+        ind = 0
+        sum = 0
+        while(i):
+            if(i&1):
+                sum += num[ind]
+            ind +=1
+            i = i >> 1
+        res.append(sum)
+    res.sort()
+    return res
