@@ -1,0 +1,16 @@
+def dfs(idx,nums,target,path,ans):
+        if target<0:
+            return
+        if target==0:
+            ans.append(path)
+            return
+        for i in range(idx,len(nums)):
+            if i!=idx and nums[i]==nums[i-1]:
+                continue
+            dfs(i+1,nums,target-nums[i],path+[nums[i]],ans)
+
+def combinationSum2(arr, n, target):
+    ans=[]
+    arr.sort()
+    dfs(0,arr,target,[],ans)
+    return ans
