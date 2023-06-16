@@ -1,0 +1,28 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+def isPossible(a,tar,total):
+    c,p=0,1
+    for i in a:
+        if i>tar:
+            return False
+        c += i
+        if c>tar:
+            c=i
+            p += 1
+    if p>total:
+        return False
+    return True
+        
+
+def ayushGivesNinjatest(t, n, time):
+    i,j=min(time),sum(time)
+    while i<=j:
+        mid=(i+j)//2
+        if isPossible(time,mid,t):
+            ans=mid
+            j=mid-1
+        else:
+            i=mid+1
+    return ans
