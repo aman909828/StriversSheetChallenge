@@ -1,0 +1,31 @@
+def search(arr, target) :
+    low,high=0,len(arr)-1
+    pivot=-1
+    while low<=high:
+        mid=(low+high)>>1
+        if arr[mid]<arr[0]:
+            high=mid-1
+        else:
+            low=mid+1
+    pivot=high
+    low=0
+    high=pivot
+    while low<=high:
+        mid=(low+high)>>1
+        if arr[mid]==target:
+            return mid
+        elif arr[mid]<target:
+            low=mid+1
+        else:
+            high=mid-1
+    low=pivot+1
+    high=len(arr)-1
+    while low<=high:
+        mid=(low+high)>>1
+        if arr[mid]==target:
+            return mid
+        elif arr[mid]<target:
+            low=mid+1
+        else:
+            high=mid-1
+    return -1
