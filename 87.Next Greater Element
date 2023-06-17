@@ -1,0 +1,18 @@
+def nextGreater(arr,n):
+    ans=[]
+    a=[]
+    pseudo=-1
+    for i in range(n-1,-1,-1):
+        if i==n-1:
+            a.append(arr[i])
+            ans.append(pseudo)
+            continue
+        while len(a) and a[-1]<=arr[i]:
+            a.pop(-1)
+        if len(a):
+            ans.append(a[-1])
+        else:
+            ans.append(pseudo)
+        a.append(arr[i])
+    ans=ans[::-1]
+    return ans
