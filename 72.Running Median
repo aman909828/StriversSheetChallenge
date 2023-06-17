@@ -1,0 +1,19 @@
+import heapq
+def findMedian(arr, n):
+    if n==0:
+        return []
+    small,large=[],[]
+    def insert(val):
+        if len(small)==len(large):
+            heapq.heappush(large,-heapq.heappushpop(small,-val))
+        else:
+            heapq.heappush(small,-heapq.heappushpop(large,val))
+    ans=[]
+    for i in range(n):
+        insert(arr[i])
+        if len(small)==len(large):
+            res=(large[0]-small[0])//2
+        else:
+            res=large[0]
+        print(res,end=" ")
+    return 
