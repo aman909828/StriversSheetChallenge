@@ -1,0 +1,16 @@
+
+def sortedinsert(stack,num):
+    if len(stack)==0 or (len(stack) and stack[-1]<num):
+        stack.append(num)
+        return
+    n=stack.pop(-1)
+    sortedinsert(stack,num)
+    stack.append(n)
+    
+def sortStack(stack):
+    if len(stack)==0:
+        return
+    num=stack.pop(-1)
+    sortStack(stack)
+    sortedinsert(stack,num)
+    return stack
