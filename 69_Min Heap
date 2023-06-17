@@ -1,0 +1,18 @@
+import heapq
+def minHeap(N: int, Q: [[]]) -> []:
+    h=[]
+    ans=[]
+    def insert(val):
+        heapq.heappush(h,val)
+    
+    def remove(ind):
+        x=heapq.heappop(h)
+        ans.append(x)
+
+    for i in range(N):
+        x=Q[i]
+        if x[0]==0:
+            insert(x[1])
+        else:
+            remove(x[0])
+    return ans
