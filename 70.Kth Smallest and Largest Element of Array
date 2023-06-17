@@ -1,0 +1,14 @@
+import heapq
+def kthSmallLarge(arr, n, k):
+    heapq.heapify(arr)
+    lar=n-k
+    cnt=0
+    ans=[1e9,-1e9]
+    while arr:
+        x=heapq.heappop(arr)
+        if cnt==k-1:
+            ans[0]=x
+        if cnt==lar:
+            ans[1]=x
+        cnt+=1
+    return ans
