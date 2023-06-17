@@ -1,0 +1,37 @@
+
+class Stack:
+    def __init__(self):
+        self.q=[]
+        # Intitialize your data structure here.
+        pass
+    def getSize(self):
+        return len(self.q)
+        # Implement the getSize() function.
+        pass
+
+    def isEmpty(self):
+        if len(self.q)==0:
+            return "True"
+        return "False"
+
+        # Implement the isEmpty() function.
+        pass
+
+    def push(self,ele):
+        self.q.append(ele)
+        # Implement the push() function.
+        pass
+
+    def pop(self):
+        if len(self.q)>0:
+            x=self.q.pop(-1)
+            return x
+        return -1
+
+        # Implement the pop() function.
+        pass
+
+    def top(self):
+        if len(self.q)>0:
+            return self.q[-1]
+        return -1
