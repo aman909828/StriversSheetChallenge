@@ -1,0 +1,59 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+# Implement class for minStack.
+class minStack:
+
+	# Write your code here.
+			
+    # Constructor
+    def __init__(self):
+        self.Stack=[]
+        self.Min=[]
+        self.cnt=0
+        # Write your code here.
+        pass
+    
+    # Function to add another element equal to num at the top of stack.
+    def push(self, num: int) -> None:
+        self.Stack.append(num)
+        self.cnt+=1
+        if len(self.Min)==0:
+            self.Min.append(num)
+        elif num<=self.Min[-1]:
+            self.Min.append(num)
+
+        # Write your code here.
+        pass
+    
+    # Function to remove the top element of the stack.
+    def pop(self) -> int:
+        if self.cnt>0:
+            x=self.Stack.pop(-1)
+            if len(self.Min)>0 and self.Min[-1]==x:
+                self.Min.pop(-1)
+            self.cnt-=1
+            return x
+        else:
+            return -1
+
+        # Write your code here.
+        pass
+    
+    # Function to return the top element of stack if it is present. Otherwise return -1.
+    def top(self) -> int:
+        if self.cnt>0:
+            return self.Stack[-1]
+        return -1
+        # Write your code here.
+        pass
+    
+    # Function to return minimum element of stack if it is present. Otherwise return -1.
+    def getMin(self) -> int:
+        if len(self.Min)>0:
+            return self.Min[-1]
+        return -1
+        # Write your code here.
+        pass
