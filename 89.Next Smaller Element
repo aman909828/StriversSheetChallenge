@@ -1,0 +1,18 @@
+def nextSmallerElement(arr,n):
+    pseudo=-1
+    ans=[]
+    s=[]
+    for i in range(n-1,-1,-1):
+        if i==n-1:
+            ans.append(pseudo)
+            s.append(arr[i])
+            continue
+        while len(s)>0 and arr[i]<=s[-1]:
+            s.pop(-1)
+        if len(s)>0:
+            ans.append(s[-1])
+        else:
+            ans.append(pseudo)
+        s.append(arr[i])
+    ans=ans[::-1]
+    return ans
