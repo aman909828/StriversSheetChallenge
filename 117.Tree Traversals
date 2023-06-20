@@ -1,0 +1,35 @@
+class BinaryTreeNode :
+    def __init__(self, data) :
+        self.data = data
+        self.left = None
+        self.right = None
+
+def getTreeTraversal(root):
+    pre=[]
+    post=[]
+    ino=[]
+    def inorder(node):
+        if not node:
+            return
+        inorder(node.left)
+        ino.append(node.data)
+        inorder(node.right)
+
+    def preorder(node):
+        if not node:
+            return
+        pre.append(node.data)
+        preorder(node.left)
+        preorder(node.right)
+
+    def postorder(node):
+        if not node:
+            return
+        postorder(node.left)
+        postorder(node.right)
+        post.append(node.data)
+    
+    inorder(root)
+    preorder(root)
+    postorder(root)
+    return [ino,pre,post]
