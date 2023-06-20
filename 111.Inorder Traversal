@@ -1,0 +1,11 @@
+
+def getInOrderTraversal(root):
+    ans=[]
+    def helper(node):
+        if not node:
+            return
+        helper(node.left)
+        ans.append(node.data)
+        helper(node.right)
+    helper(root)
+    return ans
