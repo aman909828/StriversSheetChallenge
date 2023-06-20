@@ -1,0 +1,22 @@
+def findSpans(a):
+    n=len(a)
+    x=float('inf')
+    stack=[[x,-1]]
+    res=[]
+    for i in range(n):
+        if len(stack)==0:
+            res.append(-1)
+        elif len(stack)>0 and stack[-1][0]>a[i]:
+            res.append(stack[-1][1])
+        elif len(stack)>0 and stack[-1][0]<=a[i]:
+            while len(stack)>0 and stack[-1][0]<=a[i]:
+                stack.pop()
+            if len(stack)==0:
+                res.append(-1)
+            else:
+                res.append(stack[-1][1])
+        stack.append([a[i],i])
+
+    for i in range(n):
+        res[i]=i-res[i]
+    return res
