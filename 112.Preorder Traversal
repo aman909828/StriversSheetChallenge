@@ -1,0 +1,10 @@
+def getPreOrderTraversal(root):
+	ans=[]
+	def helper(node):
+		if not node:
+			return
+		ans.append(node.data)
+		helper(node.left)
+		helper(node.right)
+	helper(root)
+	return ans
