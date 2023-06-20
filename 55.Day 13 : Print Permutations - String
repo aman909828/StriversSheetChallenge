@@ -1,0 +1,15 @@
+def findPermutations(s):
+	n=len(s)
+	s=list(s)
+	ans=[]
+
+	def solve(ind,s):
+		if ind==n:
+			ans.append("".join(s))
+			return
+		for i in range(ind,n):
+			s[ind],s[i]=s[i],s[ind]
+			solve(ind+1,s)
+			s[ind],s[i]=s[i],s[ind]
+	solve(0,s)
+	return ans
