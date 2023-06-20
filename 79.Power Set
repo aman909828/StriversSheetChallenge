@@ -1,0 +1,12 @@
+
+def pwset(v):
+    n=len(v)
+    ans=[]
+    def helper(ind,arr):
+        if ind==n:
+            ans.append(arr)
+            return
+        helper(ind+1,arr)
+        helper(ind+1,arr+[v[ind]])
+    helper(0,[])
+    return ans
