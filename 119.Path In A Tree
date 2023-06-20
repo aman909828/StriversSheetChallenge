@@ -1,0 +1,22 @@
+
+class TreeNode:   
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+def pathInATree(root: TreeNode, x: int) -> List[int]:
+    ans=[]
+    def helper(node,path):
+        if not node:
+            return
+        if node.data==x:
+            path.append(node.data)
+            ans.append(path)
+            return
+        helper(node.left,path+[node.data])
+        helper(node.right,path+[node.data])
+    
+    helper(root,[])
+    return ans[0]
