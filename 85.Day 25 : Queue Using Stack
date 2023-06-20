@@ -1,0 +1,36 @@
+class Queue:
+
+    def __init__(self):
+        self.q=[]
+        self.cnt=0
+        # Initialize your data structure here.
+        pass
+
+    def enQueue(self, val):
+        self.q.append(val)
+        self.cnt+=1
+        # Implement the enqueue() function.
+        pass
+
+    def deQueue(self):
+        if self.cnt>0:
+            x=self.q.pop(0)
+            self.cnt-=1
+            return x
+        return -1
+        # Implement the dequeue() function.
+        pass
+
+    def peek(self):
+        if self.cnt>0:
+            return self.q[0]
+        return -1
+        # Implement the peek() function here.
+        pass
+
+    def isEmpty(self):
+        if self.cnt>0:
+            return False
+        return True
+        # Implement the isEmpty() function here.
+        pass
