@@ -1,0 +1,27 @@
+def solveNQueens(n):
+    grid=[[0 for i in range(n)]for i in range(n)]
+    left_row=[0 for i in range(n)]
+    up_dia=[0 for i in range(2*n-1)]
+    low_dia=[0 for i in range(2*n-1)]
+    ans=[]
+    cnt=0
+    def solve(col,grid):
+        if col==n:
+            print()
+            for i in range(n):
+                for j in range(n):
+                    print(grid[i][j],end=" ")
+            return
+        for row in range(n):
+            if left_row[row]==0 and low_dia[row+col]==0 and up_dia[n-1+col-row]==0:
+                left_row[row]=1
+                low_dia[row+col]=1
+                up_dia[n-1+col-row]=1
+                grid[row][col]=1
+                solve(col+1,grid)
+                grid[row][col]=0
+                up_dia[n-1+col-row]=0
+                low_dia[row+col]=0
+                left_row[row]=0
+    solve(0,grid)
+    return ans
