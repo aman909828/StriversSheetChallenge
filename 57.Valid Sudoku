@@ -1,0 +1,25 @@
+def isItSudoku(matrix):
+    def isvalid(row,col,val,matrix):
+        val=int(val)
+        for i in range(9):
+            if matrix[i][col]==val:
+                return False
+            if matrix[row][i]==val:
+                return False
+            if matrix[3*(row//3)+i//3][3*(col//3)+i%3]==val:
+                return False
+        return True
+    
+
+    for i in range(9):
+        for j in range(9):
+            if matrix[i][j]==0:
+                for c in "123456789":
+                    if isvalid(i,j,c,matrix):
+                        matrix[i][j]=int(c)
+                        if isItSudoku(matrix):
+                            return True
+                        else:
+                            matrix[i][j]=0
+                return False
+    return True
