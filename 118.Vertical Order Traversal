@@ -1,0 +1,32 @@
+
+vector<int> verticalOrderTraversal(TreeNode<int> *root)
+{
+    map<int,vector<int>> m;
+    queue<pair<TreeNode<int> *,pair<int,int>>> q;
+    vector<int> ans;
+    if(root == NULL){
+        return ans;
+    }
+    q.push(make_pair(root,make_pair(0,0)));
+    while(!q.empty()){
+        pair<TreeNode<int> *,pair<int,int>> p = q.front();
+        q.pop();
+        TreeNode<int> *node = p.first;
+        int hi = p.second.first;
+        int vi = p.second.second;
+        m[hi].push_back(node->data);
+        if(node->left){
+            q.push(make_pair(node->left,make_pair(hi-1,vi+1)));
+        }
+        if(node->right){
+            q.push(make_pair(node->right,make_pair(hi+1,vi+1)));
+        }
+    }
+    for(auto v:m){
+        vector<int> a = v.second;
+        for(int i:a){
+            ans.push_back(i);
+        }
+    }
+    return ans;
+}
