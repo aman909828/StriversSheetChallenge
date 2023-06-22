@@ -1,0 +1,21 @@
+def bottomView(root):
+    ans=[]
+    if not root:
+        return ans
+    dict=OrderedDict()
+    q=[]
+    q.append([root,0])
+    while q:
+        node,ind=q.pop(0)
+        dict[ind]=node.data
+        if node.left:
+            q.append([node.left,ind-1])
+        if node.right:
+            q.append([node.right,ind+1])
+    arr=[]
+    for i in dict:
+        arr.append(i)
+    arr.sort()
+    for i in arr:
+        ans.append(dict[i])
+    return ans
