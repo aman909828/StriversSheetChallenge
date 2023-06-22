@@ -1,0 +1,16 @@
+def getMaxWidth(root):
+  ans=0
+  if not root:
+      return 0
+  q=[]
+  q.append(root)
+  while q:      
+    n=len(q)
+    ans=max(ans,n)
+    for i in range(n):
+      x=q.pop(0)
+      if x.left:
+        q.append(x.left)
+      if x.right:
+        q.append(x.right)
+  return ans
