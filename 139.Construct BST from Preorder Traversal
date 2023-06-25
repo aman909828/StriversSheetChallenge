@@ -1,0 +1,23 @@
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+
+def preOrderTree(preOrder: List[int]) -> TreeNode:
+
+    root=TreeNode(preOrder[0])
+    stack=[root]
+    for value in preOrder[1:]:
+        if value<stack[-1].val:
+            stack[-1].left=TreeNode(value)
+            stack.append(stack[-1].left)
+        else:
+            while stack and stack[-1].val<value:
+                last=stack.pop()
+            last.right=TreeNode(value)
+            stack.append(last.right)
+    return root
