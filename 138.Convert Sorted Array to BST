@@ -1,0 +1,23 @@
+class TreeNode :
+    def __init__(self, val) :
+        self.val = val
+        self.left = None
+        self.right = None
+
+    def __del__(self):
+        if self.left:
+            del self.left
+        if self.right:
+            del self.right
+
+def sortedArrToBST(arr, n):
+	def dfs(start,end):
+		if start<=end:
+			mid=(start+end)>>1
+			node=TreeNode(arr[mid])
+			node.left=dfs(start,mid-1)
+			node.right=dfs(mid+1,end)
+			return node
+
+	root=dfs(0,n-1)
+	return root
