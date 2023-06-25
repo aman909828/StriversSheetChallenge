@@ -1,0 +1,14 @@
+
+def floorInBST(root, X):
+    ans=-1
+    node=root
+    while node:
+        if node.data==X:
+            ans=node.data
+            return ans
+        elif node.data>X:
+            node=node.left
+        else:
+            ans=node.data
+            node=node.right
+    return ans
