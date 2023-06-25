@@ -1,0 +1,24 @@
+class   TreeNode :
+    def __init__(self, data) :
+        self.data = data
+        self.left = None
+        self.right = None
+
+    def __del__(self):
+        if self.left:
+            del self.left
+        if self.right:
+            del self.right
+
+
+def LCAinaBST(root, P, Q):
+
+    def helper(node,p,q):
+        if node:
+            if p.data<node.data and q.data<node.data:
+                return helper(node.left,p,q)
+            elif p.data>node.data and q.data>node.data:
+                return helper(node.right,p,q)
+            else:
+                return node
+    return helper(root,P,Q)
