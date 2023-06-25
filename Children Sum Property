@@ -1,0 +1,13 @@
+def changeTree(root):
+    def helper(node):
+        if not node:
+            return 0
+        if not node.left and not node.right:
+            node.data=10**6
+        else:
+            x=helper(node.left)
+            y=helper(node.right)
+            node.data=x+y
+        return node.data
+    
+    helper(root)
