@@ -1,0 +1,14 @@
+
+def findCeil(root, x):
+    ans=-1
+    node=root
+    while node:
+        if node.data==x:
+            ans=node.data
+            return ans
+        elif node.data>x:
+            ans=node.data
+            node=node.left
+        else:
+            node=node.right
+    return ans
