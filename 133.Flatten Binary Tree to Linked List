@@ -1,0 +1,14 @@
+def flattenBinaryTree(root):
+    prev=None
+    def flat(node):
+        if not node:
+            return
+        nonlocal prev
+        flat(node.right)
+        flat(node.left)
+        node.right=prev
+        node.left=None
+        prev=node
+    flat(root)
+    return root
+        
