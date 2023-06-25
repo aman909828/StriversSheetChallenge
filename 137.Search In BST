@@ -1,0 +1,11 @@
+
+def searchInBST(root, x):
+	node=root
+	while node:
+		if node.data==x:
+			return True
+		elif node.data>x:
+			node=node.left
+		else:
+			node=node.right
+	return False
