@@ -1,0 +1,31 @@
+def predecessorSuccessor(root, key):
+    pre=suc=-1
+    node=root
+    while node:
+        if key<node.data:
+            suc=node
+            node=node.left
+        elif key>node.data:
+            pre=node
+            node=node.right
+        else:
+            break
+    if node:
+        if node.left:
+            pre = node.left
+            while pre.right:
+                pre = pre.right
+        if node.right:
+            suc = node.right
+            while suc.left:
+                suc = suc.left
+    arr=[]
+    if pre==-1:
+        arr.append(pre)
+    else:
+        arr.append(pre.data)
+    if suc==-1:
+        arr.append(suc)
+    else:
+        arr.append(suc.data)
+    return arr
