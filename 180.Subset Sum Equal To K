@@ -1,0 +1,21 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def subsetSumToK(n, k, arr):
+    dp=[[-1 for i in range(k+1)]for i in range(n+1)]
+    def solve(idx,target):
+        if target==0:
+            return 1
+        if idx==n:
+            return 0
+        if dp[idx][target]!=-1:
+            return dp[idx][target]
+        take=0
+        if arr[idx]<=target:
+            take=solve(idx+1,target-arr[idx])
+        nottake=solve(idx+1,target)
+        dp[idx][target]=take or nottake
+        return dp[idx][target]
+    return solve(0,k)
