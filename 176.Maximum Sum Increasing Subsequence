@@ -1,0 +1,19 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def maxIncreasingDumbbellsSum(rack, n):
+    dp=[[-1 for i in range(n+1)]for j in range(n+1)]
+    def solve(ind,prev_ind):
+        if ind==n:
+            return 0
+        if dp[ind][prev_ind]!=-1:
+            return dp[ind][prev_ind]
+        take=0
+        if prev_ind==-1 or rack[ind]>rack[prev_ind]:
+            take=rack[ind] + solve(ind+1,ind)
+        not_take=solve(ind+1,prev_ind)
+        dp[ind][prev_ind]=max(take,not_take)
+        return dp[ind][prev_ind]
+    return solve(0,-1)
