@@ -1,0 +1,17 @@
+
+def wordBreak(arr, n, target):
+    cache={}
+    def solve(ind):
+        if ind>=len(target):
+            return True
+        if ind in cache:
+            return cache[ind]
+        for j in range(ind,len(target)):
+            subs=target[ind:j+1]
+            if subs in arr:
+                if solve(j+1):
+                    cache[j]=True
+                    return cache[j]
+        cache[ind]=False
+        return cache[ind]
+    return solve(0)
