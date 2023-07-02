@@ -1,0 +1,51 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+# Following is the Binary Tree node structure:
+class BinaryTreeNode:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def traverseBoundary(root):
+    def leftsolve(node):
+        nonlocal ans
+        if node:
+            if node.left:
+                ans.append(node.data)
+                leftsolve(node.left)
+            elif node.right:
+                ans.append(node.data)
+                leftsolve(node.right)
+    
+    def rightsolve(node):
+        nonlocal ans
+        if node:
+            if node.right:
+                rightsolve(node.right)
+                ans.append(node.data)
+            elif node.left:
+                rightsolve(node.left)
+                ans.append(node.data)
+    
+    def leavesolve(node):
+        nonlocal ans
+        if node:
+            leavesolve(node.left)
+            if not node.left and not node.right:
+                ans.append(node.data)
+            leavesolve(node.right)
+
+            
+
+    ans=[]
+    if root:
+        ans.append(root.data)
+        leftsolve(root.left)
+        leavesolve(root.left)
+        leavesolve(root.right)
+        rightsolve(root.right)
+    return ans
