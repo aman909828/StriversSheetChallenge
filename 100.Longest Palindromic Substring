@@ -1,0 +1,23 @@
+def longestPalinSubstring(str):
+    def check(s,left,right):
+        n=len(s)
+        while left>=0 and right<n:
+            if s[left]!=s[right]:
+                break
+            left-=1
+            right+=1
+        return s[left+1:right]
+
+    n=len(str)
+    s=""
+    for i in range(n):
+        odd=check(str,i,i)
+        if len(odd)>len(s):
+            s=odd
+    for i in range(n):
+        even=check(str,i,i+1)
+        if len(even)>len(s):
+            s=even
+    return s
+    # Write your code here.
+    pass
