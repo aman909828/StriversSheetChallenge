@@ -1,0 +1,25 @@
+
+def zigZagTraversal(root):
+    if not root:
+        return []
+    ans=[]
+    q=[]
+    flag=0
+    q.append(root)
+    while q:
+        n=len(q)
+        s=[]
+        for i in range(n):
+            node=q.pop(0)
+            s.append(node.data)
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+        if flag==0:
+            ans.extend(s)
+            flag=1
+        elif flag==1:
+            ans.extend(s[::-1])
+            flag=0
+    return ans
