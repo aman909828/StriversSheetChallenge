@@ -1,0 +1,22 @@
+def countDistinctElements(arr, k):
+    n=len(arr)
+    i=j=0
+    ans=[]
+    dict={}
+    cnt=0
+    while j<n:
+        if arr[j] in dict:
+            dict[arr[j]]+=1
+        else:
+            dict[arr[j]]=1
+            cnt+=1
+        if j-i+1==k:
+            ans.append(cnt)
+            dict[arr[i]]-=1
+            if dict[arr[i]]==0:
+                cnt-=1
+                del dict[arr[i]]
+            i+=1
+        j+=1
+        #print(ans)
+    return ans
