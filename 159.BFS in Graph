@@ -1,0 +1,32 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def BFS(V, edges):
+    adj=defaultdict(list)
+    for i in range(len(edges[0])):
+        adj[edges[0][i]].append(edges[1][i])
+        adj[edges[1][i]].append(edges[0][i])
+    for i in range(V):
+        adj[i].sort()
+
+    vis=[0]*V
+    ans=[]
+    queue=[]
+    for i in range(V):
+        if vis[i]==0:
+            queue.append(i)
+            vis[i]=1
+            while queue:
+                node=queue.pop(0)
+                ans.append(node)
+                for i in adj[node]:
+                    if vis[i]==0:
+                        queue.append(i)
+                        vis[i]=1
+    
+    return ans
+    # Write your solution here
+    # 'vertex' is the number of vertices present in the graph
+    # 'edges' is a matrix of the set of edges between two given vertices in the graph 
