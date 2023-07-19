@@ -1,0 +1,29 @@
+def detectCycleInDirectedGraph(n, edges):
+    
+    def dfs(curr,path_vis):
+        vis[curr]=1
+        path_vis[curr]=1
+        for j in adj[curr]:
+            if vis[j]==0:
+                if dfs(j,path_vis):
+                    return True
+            elif path_vis[j]:
+                return True
+        path_vis[curr]=0
+        return False
+        
+    adj=[[]for i in range(n+1)]
+    for i in range(len(edges)):
+        x,y=edges[i][0],edges[i][1]
+        adj[x-1].append(y-1)
+    #print(adj)
+    vis=[0]*(n)
+    path_vis=[0]*(n)
+    ans=0
+    for i in range(n):
+        if vis[i]==0:
+            if dfs(i,path_vis):
+                return True
+    return False
+    # Write your code here
+    pass
