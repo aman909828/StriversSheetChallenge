@@ -1,0 +1,64 @@
+
+from sys import stdin
+
+class Node:
+    def __init__(self, key, value):
+        self.prev = None
+        self.next = None
+        self.key = key
+        self.value = value
+
+class LRUCache:
+    def __init__(self, capacity):
+        self.head = Node(0, 0)
+        self.tail = Node(0, 0)
+        self.hm = {}
+        self.cap = capacity
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+    def get(self, key):
+        if key in self.hm:
+            node = self.hm[key]
+            self.remove(node)
+            self.insert(node)
+            return node.value
+        else:
+            return -1
+
+    def put(self, key, value):
+        if key in self.hm:
+            self.remove(self.hm[key])
+        if len(self.hm) == self.cap:
+            self.remove(self.tail.prev)
+        self.insert(Node(key, value))
+
+    def insert(self, node):
+        self.hm[node.key] = node
+        node.next = self.head.next
+        node.next.prev = node
+        self.head.next = node
+        node.prev = self.head
+
+    def remove(self, node):
+        del self.hm[node.key]
+        node.prev.next = node.next
+        node.next.prev = node.prev
+
+# main
+capacity, q = map(int, stdin.readline().rstrip().split(" "))
+
+cache = LRUCache(capacity)
+
+while q != 0:
+	query = list(map(int, stdin.readline().rstrip().split()))
+
+	if query[0] == 0:
+		key = query[1]
+		print(cache.get(key))
+	elif query[0] == 1:
+		key = query[1]
+		value = query[2]
+		cache.put(key, value)
+	
+	q -= 1
