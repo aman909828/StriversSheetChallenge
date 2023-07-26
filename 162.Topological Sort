@@ -1,0 +1,31 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def topologicalSort(adj, v, e):
+    indegrees = [0] * (v)
+    graph = defaultdict(list)
+
+    for u, w in adj:
+        graph[u].append(w)
+
+    for i in range(v):
+        for neiNode in graph[i]:
+            indegrees[neiNode] += 1
+    
+    q = deque()
+
+    for i in range(v):
+        if indegrees[i] == 0:
+            q.append(i)
+    ans = []
+    while q:
+        node = q.popleft()
+        ans.append(node)
+        for neiNode in graph[node]:
+            indegrees[neiNode] -= 1
+            if indegrees[neiNode] == 0:
+                q.append(neiNode)
+    
+    return ans
