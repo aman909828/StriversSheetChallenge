@@ -1,0 +1,30 @@
+from collections import deque
+def getAdjList(edges, n):
+    adjList = [[] for i in range(0, n+1)]
+    for v1, v2 in edges:
+        if v1 not in adjList[v2]:
+            adjList[v2].append(v1)
+        if v2 not in adjList[v1]:
+            adjList[v1].append(v2)
+    return adjList   
+def isCycle(i, n, adjList, visited):
+    q = deque([(i, -1)])
+    visited[i] = 1
+    while q:
+        node, parent = q.popleft()
+        for des in adjList[node]:
+            if not visited[des]:
+                visited[des] = 1
+                q.append((des, node))
+            else:
+                if parent!=des:
+                    return True
+    return False            
+def cycleDetection(edges, n, m):
+    adjList = getAdjList(edges, n)
+    visited = [0]*(n+1)
+    for i in range(1, n+1):
+        if not visited[i]:
+            if isCycle(i, n, adjList, visited):
+                return "Yes"
+    return "No"
