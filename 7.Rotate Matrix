@@ -1,0 +1,25 @@
+from math import *
+from collections import *
+from sys import *
+from os import *
+
+def rotateMatrix(mat, n, m):
+    k=min(m,n)
+    for i in range(k//2):
+        top=i
+        left=i
+        bottom=n-1-i
+        right=m-1-i
+
+        x=mat[top][left]
+        for j in range(left+1,right+1):
+            mat[top][j],x=x,mat[top][j]
+        for j in range(top+1,bottom+1):
+            mat[j][right],x=x,mat[j][right]
+        for j in range(right-1,left-1,-1):
+            mat[bottom][j],x=x,mat[bottom][j]
+        for j in range(bottom-1,top-1,-1):
+            mat[j][left],x=x,mat[j][left]
+    return mat
+    # Write your code here
+    pass
