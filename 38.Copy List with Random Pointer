@@ -1,0 +1,27 @@
+from math import *
+from collections import *
+from sys import *
+from os import *
+
+class LinkedListNode:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        self.random = None
+        
+
+def cloneRandomList(head):
+    orgCurr = head
+    cloneHead = cloneCurr = LinkedListNode(0)
+    cloneDict = {}
+    while orgCurr:
+        cloneDict[orgCurr] = LinkedListNode(orgCurr.data)
+        orgCurr = orgCurr.next
+    
+    orgCurr = head
+    while orgCurr:
+        cloneCurr.next = cloneDict.get(orgCurr, None)
+        cloneCurr.next.random = cloneDict.get(orgCurr.random, None)
+        cloneCurr = cloneCurr.next
+        orgCurr = orgCurr.next
+    return cloneHead.next
